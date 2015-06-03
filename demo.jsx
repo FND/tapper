@@ -5,6 +5,6 @@ var Tapper = require("./index");
 var supplant = require("./supplant");
 
 var origins = document.querySelectorAll("audio"); // NB: _static_ collection
-[].forEach.call(origins, function(origin) {
+[].forEach.call(origins, (origin) => {
 	supplant(origin, <Tapper src={origin.src} />);
 });
