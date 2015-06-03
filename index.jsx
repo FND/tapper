@@ -7,7 +7,7 @@ module.exports = React.createClass({
 	render: function() {
 		return <div className="tapper">
 			<h3>Tapper</h3>
-			<p>lorem ipsum dolor sit amet</p>
+			<p>now playing: {this.props.src}</p>
 		</div>
 	}
 });
