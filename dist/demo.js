@@ -94,10 +94,12 @@
 			// XXX: recreating the audio element is silly, but React doesn't make
 			//      it easy to work with existing DOM nodes
 			return React.createElement("div", {className: "tapper"}, 
-				React.createElement("img", {src: waveform}), 
+				React.createElement("div", {className: "waveform"}, 
+					React.createElement("img", {src: waveform}), 
+					React.createElement("div", {className: "indicator", ref: "indicator"})
+				), 
 				React.createElement("audio", {src: audioNode.src, controls: true, ref: "audio"}), 
-				React.createElement("p", null, "now playing: ", audioNode.src), 
-				React.createElement("div", {className: "indicator", ref: "indicator"})
+				React.createElement("p", null, "now playing: ", audioNode.src)
 			)
 		},
 		componentDidMount:function() {
@@ -108,7 +110,7 @@
 		onPlayback: function(ev) { // XXX: event triggers only every ~250 ms, thus not very smooth
 			var player = ev.target;
 			var progress = player.currentTime / player.duration;
-			this.indicator.style.left = (progress * 100) + "%";
+			this.indicator.style.width = (progress * 100) + "%";
 		}
 	});
 
