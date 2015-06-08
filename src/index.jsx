@@ -10,10 +10,12 @@ module.exports = React.createClass({
 		// XXX: recreating the audio element is silly, but React doesn't make
 		//      it easy to work with existing DOM nodes
 		return <div className="tapper">
-			<img src={waveform} />
+			<div className="waveform">
+				<img src={waveform} />
+				<div className="indicator" ref="indicator" />
+			</div>
 			<audio src={audioNode.src} controls ref="audio" />
 			<p>now playing: {audioNode.src}</p>
-			<div className="indicator" ref="indicator" />
 		</div>
 	},
 	componentDidMount() {
@@ -24,6 +26,6 @@ module.exports = React.createClass({
 	onPlayback: function(ev) { // XXX: event triggers only every ~250 ms, thus not very smooth
 		var player = ev.target;
 		var progress = player.currentTime / player.duration;
-		this.indicator.style.left = (progress * 100) + "%";
+		this.indicator.style.width = (progress * 100) + "%";
 	}
 });
